@@ -9,6 +9,8 @@ import aima.core.logic.fol.inference.FOLFCAsk;
 import aima.core.logic.fol.inference.FOLBCAsk;
 import aima.core.logic.fol.parsing.ast.Predicate;
 import aima.core.logic.fol.parsing.ast.Variable;
+import aima.core.logic.fol.inference.FOLTFMResolution;
+
 
 public class Test<Term> {
 	

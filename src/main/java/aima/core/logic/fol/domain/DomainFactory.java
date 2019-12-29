@@ -92,7 +92,21 @@ public class DomainFactory {
 	}
 
 	public static FOLDomain studentDomain() {
-		// TODO Auto-generated method stub
-		return null;
+		FOLDomain domain = new FOLDomain();
+		domain.addPredicate("Student");
+		domain.addPredicate("Instructor");
+		domain.addPredicate("Course");
+		domain.addPredicate("Takes");
+		domain.addPredicate("Gives");
+		
+		domain.addConstant("Cagla");
+		domain.addConstant("Eliz");
+		domain.addConstant("Kamile");
+		domain.addConstant("HuseyinAbaci");
+		domain.addConstant("FatihSoygazi");
+		domain.addConstant("MachineLearning");
+		domain.addConstant("BigData");
+		domain.addConstant("ArtificialIntelligence");
+		return domain;
 	}
 }

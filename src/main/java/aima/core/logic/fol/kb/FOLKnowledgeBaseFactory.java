@@ -37,6 +37,27 @@ public class FOLKnowledgeBaseFactory {
 
 		return kb;
 	}
+	
+	public static FOLKnowledgeBase createStudentKnowledgeBase(InferenceProcedure infp){
+		FOLKnowledgeBase kb = new FOLKnowledgeBase(
+				DomainFactory.studentDomain(), infp);
+		kb.tell("( (((Instructor(x) AND Course(y)) AND Gives(x,y)) AND Takes(z,y)) => Student(z))");
+		kb.tell("Student(Eliz)");
+		kb.tell("Student(Kamile)");
+		kb.tell("Student(Cagla)");
+		kb.tell("Instructor(FatihSoygazi)");
+		kb.tell("Instructor(HuseyinAbaci)");
+		kb.tell("Course(MachineLearning)");
+		kb.tell("Course(BigData)");
+		kb.tell("Course(ArtificialIntelligence)");
+		kb.tell("Takes(Eliz,MachineLearning)");
+		kb.tell("Takes(Kamile,BigData)");
+		kb.tell("Takes(Cagla,ArtificialIntelligence)");
+		kb.tell("Gives(FatihSoygazi,MachineLearning)");
+		kb.tell("Gives(FatihSoygazi,Artifical Intelligence)");
+		kb.tell("Gives(HuseyinAbaci,BigData)");
+		return kb;
+	}
 
 	public static FOLKnowledgeBase createLovesAnimalKnowledgeBase(
 			InferenceProcedure infp) {
