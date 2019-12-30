@@ -23,7 +23,7 @@ import aima.core.logic.fol.parsing.ast.Variable;
  */
 public class FOLKnowledgeBaseTest {
 
-	private FOLKnowledgeBase weaponsKB, kingsKB;
+	private FOLKnowledgeBase weaponsKB, kingsKB, studentKB;
 
 	@Before
 	public void setUp() {
@@ -32,6 +32,8 @@ public class FOLKnowledgeBaseTest {
 		weaponsKB = new FOLKnowledgeBase(DomainFactory.weaponsDomain());
 
 		kingsKB = new FOLKnowledgeBase(DomainFactory.kingsDomain());
+		
+		studentKB = new FOLKnowledgeBase(DomainFactory.studentDomain());
 	}
 
 	@Test
@@ -60,6 +62,23 @@ public class FOLKnowledgeBaseTest {
 		Assert.assertEquals(new Literal(new Predicate("Criminal", terms)),
 				dcRule.getPositiveLiterals().get(0));
 	}
+	
+	@Test
+	public void testStudentInfoSystem() {
+		studentKB
+		        .tell("( (((Instructor(x) AND Course(y)) AND Gives(x,y)) AND Takes(z,y)) => Student(z))");
+		Assert.assertEquals(1, studentKB.getNumberRules());
+		studentKB.tell("Instructor(FatihSoygazi)");
+		studentKB.tell("Instructor(HuseyinAbaci)");
+		studentKB.tell("Student(Eliz)");
+		studentKB.tell("Student(Cagla)");
+		studentKB.tell("Student(Kamile)");
+		Assert.assertEquals(1, studentKB.getNumberRules());
+
+		List<Term> terms = new ArrayList<Term>();
+		terms.add(new Variable("v0"));
+
+	}
 
 	@Test
 	public void testFactNotAddedWhenAlreadyPresent() {
@@ -85,4 +104,5 @@ public class FOLKnowledgeBaseTest {
 		Assert.assertEquals(1, kingsKB.getNumberRules());
 		Assert.assertEquals(3, kingsKB.getNumberFacts());
 	}
+	
 }
